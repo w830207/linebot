@@ -55,39 +55,9 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
     if event.message.text == "666":
-        button_template_message =ButtonsTemplate(
-                            thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
-                            title='請問您是否成年？', 
-                            text='Please select',
-                            ratio="1.51:1",
-                            image_size="cover",
-                            actions=[
-#                                PostbackTemplateAction 點擊選項後，
-#                                 除了文字會顯示在聊天室中，
-#                                 還回傳data中的資料，可
-#                                 此類透過 Postback event 處理。
-                                PostbackTemplateAction(
-                                    label='是', 
-                                    text='是',
-                                    data='year=1'
-                                ),
-                                PostbackTemplateAction(
-                                    label='否', 
-                                    text='否',
-                                    data='year=0'
-                                )
-                            ]
-                        )
-    
-       line_bot_api.reply_message(
-            event.reply_token,
-            TemplateSendMessage(
-                alt_text="Template Example",
-                template=button_template_message
-            )
-        )
+           message = TextSendMessage(text='55555')
+           line_bot_api.reply_message(event.reply_token, message)
     
     
     
