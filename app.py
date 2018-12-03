@@ -59,7 +59,8 @@ def handle_message(event):
     line_bot_api.reply_message(event.reply_token, message)
     if event.message.text == "喝茶":
         button_template_message =ButtonsTemplate(
-                            title='Menu', 
+                            thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
+                            title='請問您是否成年？', 
                             text='Please select',
                             ratio="1.51:1",
                             image_size="cover",
@@ -81,7 +82,13 @@ def handle_message(event):
                             ]
                         )
     
-    
+                line_bot_api.reply_message(
+            event.reply_token,
+            TemplateSendMessage(
+                alt_text="Template Example",
+                template=button_template_message
+            )
+        )
     
     
     
