@@ -57,7 +57,34 @@ def callback():
 def handle_message(event):
     message = TextSendMessage(text='55555')
     line_bot_api.reply_message(event.reply_token, message)
-
+    if event.message.text == "喝茶":
+        button_template_message =ButtonsTemplate(
+                            title='Menu', 
+                            text='Please select',
+                            ratio="1.51:1",
+                            image_size="cover",
+                            actions=[
+#                                PostbackTemplateAction 點擊選項後，
+#                                 除了文字會顯示在聊天室中，
+#                                 還回傳data中的資料，可
+#                                 此類透過 Postback event 處理。
+                                PostbackTemplateAction(
+                                    label='是', 
+                                    text='是',
+                                    data='year=1'
+                                ),
+                                PostbackTemplateAction(
+                                    label='否', 
+                                    text='否',
+                                    data='year=0'
+                                )
+                            ]
+                        )
+    
+    
+    
+    
+    
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
