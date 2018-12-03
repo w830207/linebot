@@ -56,7 +56,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-    if event.message.text == "喝茶":
+    if event.message.text == "666":
         button_template_message =ButtonsTemplate(
                             thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
                             title='請問您是否成年？', 
