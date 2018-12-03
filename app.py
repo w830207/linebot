@@ -29,6 +29,9 @@ handler = WebhookHandler(SECRET)
 
 google_data_spi = 'https://spreadsheets.google.com/feeds/list/2PACX-1vT9QMEsG9a8Hc7QrzjD_oTR97-10KEfhMfdvamHTMsJWDrFbyKzEec_s0nUmAJBuuEQrw7UEVCxc5bP/od6/public/values?alt=json'
 
+#測試加好友會不會自動送
+line_bot_api.push_message(to, TextSendMessage(text='try'))
+
 
 
 @app.route("/")
