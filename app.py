@@ -1,8 +1,5 @@
 from flask import Flask, request, abort
-#google sheet金鑰位置
 import pygsheets
-gc = pygsheets.authorize(service_file='teafish-2959348d6c14.json')
-
 import os
 import sys
 from linebot import (
@@ -31,8 +28,14 @@ line_bot_api = LineBotApi(ACCESS_TOKEN)
 # Channel Secret
 handler = WebhookHandler(SECRET)
 
-google_data_spi = 'https://spreadsheets.google.com/feeds/list/2PACX-1vT9QMEsG9a8Hc7QrzjD_oTR97-10KEfhMfdvamHTMsJWDrFbyKzEec_s0nUmAJBuuEQrw7UEVCxc5bP/od6/public/values?alt=json'
 
+#google sheet金鑰位置
+gc = pygsheets.authorize(service_file='teafish-2959348d6c14.json')
+#sheet 開啟
+sh = gc.open('teafish')
+wks2 = sht.worksheet_by_title("Sheet1")
+# Update
+wks.update_cell('A3', "Hey yank this numpy array")
 
 
 
