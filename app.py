@@ -30,12 +30,13 @@ handler = WebhookHandler(SECRET)
 
 
 #google sheet金鑰位置
-gc = pygsheets.authorize(service_file='teafish-2959348d6c14.json')
+GDriveJSON = 'teafish-75f3bc4ebb90.json'
+
+gc = pygsheets.authorize(service_file='teafish-75f3bc4ebb90.json')
 #sheet 開啟
-sh = gc.open('teafish')
-wks = sht.worksheet_by_title("Sheet1")
-# Update
-wks.update_cell('A3', "Hey yank this numpy array")
+sh = gc.open('teafish').sheet1
+
+
 
 
 
