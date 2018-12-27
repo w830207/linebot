@@ -1,4 +1,8 @@
 from flask import Flask, request, abort
+#google sheet金鑰位置
+import pygsheets
+gc = pygsheets.authorize(service_file='teafish-2959348d6c14.json')
+
 import os
 import sys
 from linebot import (
