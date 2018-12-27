@@ -33,7 +33,7 @@ handler = WebhookHandler(SECRET)
 gc = pygsheets.authorize(service_file='teafish-2959348d6c14.json')
 #sheet 開啟
 sh = gc.open('teafish')
-wks2 = sht.worksheet_by_title("Sheet1")
+wks = sht.worksheet_by_title("Sheet1")
 # Update
 wks.update_cell('A3', "Hey yank this numpy array")
 
