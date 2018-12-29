@@ -1,5 +1,4 @@
 from flask import Flask, request, abort
-import pygsheets
 import os
 import sys
 from linebot import (
