@@ -58,7 +58,6 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	year = 0
     if event.message.text != "" && event.message.text != "喝茶" && year = 0:
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！')
 			line_bot_api.reply_message(event.reply_token, message)
