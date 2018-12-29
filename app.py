@@ -1,9 +1,8 @@
 from flask import Flask, request, abort
 import os
 import sys
-import datetime
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials as SAC
+
 from linebot import (
     LineBotApi, WebhookHandler
 )
