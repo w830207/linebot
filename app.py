@@ -82,8 +82,8 @@ def handle_message(event):
                                     data='year=0'
                                 )
                             ]
-							)
-						)
+			)
+		)
         line_bot_api.reply_message( event.reply_token,confirm_template_message)
 	if event.message.text == "是":
 			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
@@ -94,10 +94,10 @@ def handle_message(event):
 	elif	event.message.text == "北區":
 			message = TextSendMessage(text='test2')
 			line_bot_api.reply_message(event.reply_token, message)
-    elif	event.message.text == "北區":
+    	elif	event.message.text == "北區":
 			message = TextSendMessage(text='test3')
 			line_bot_api.reply_message(event.reply_token, message)
-    else:
+    	else:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
     
