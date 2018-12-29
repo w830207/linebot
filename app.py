@@ -29,12 +29,6 @@ line_bot_api = LineBotApi(ACCESS_TOKEN)
 handler = WebhookHandler(SECRET)
 
 
-#google sheet金鑰位置
-GDriveJSON = 'teafish-75f3bc4ebb90.json'
-
-gc = pygsheets.authorize(service_file='teafish-75f3bc4ebb90.json')
-#sheet 開啟
-sh = gc.open('teafish').sheet1
 
 
 
