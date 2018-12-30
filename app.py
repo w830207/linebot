@@ -57,10 +57,10 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	if event.message.text != "":
+	if event.message.text != "" and event.message.text != "喝茶" and event.message.text != "是" and event.message.text != "西屯區" and event.message.text != "中區" and event.message.text != "北區":
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！')
 			line_bot_api.reply_message(event.reply_token, message)
-	if event.message.text == "喝茶":
+	elif event.message.text == "喝茶":
             confirm_template_message = TemplateSendMessage(
                             alt_text='請問您是否成年？', 
                             template=ConfirmTemplate(
@@ -84,16 +84,16 @@ def handle_message(event):
 			)
 		)
             line_bot_api.reply_message( event.reply_token,confirm_template_message)
-	if event.message.text == '是':
+	elif event.message.text == "是":
 			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-	if event.message.text == '西屯區':
+	elif event.message.text == "西屯區":
 			message = TextSendMessage(text='test1')
 			line_bot_api.reply_message(event.reply_token, message)
-	elif event.message.text == '中區':
+	elif event.message.text == "中區":
 			message = TextSendMessage(text='test2')
 			line_bot_api.reply_message(event.reply_token, message)
-	elif event.message.text == '北區':
+	elif event.message.text == "北區":
 			message = TextSendMessage(text='test3')
 			line_bot_api.reply_message(event.reply_token, message)
 	else:
