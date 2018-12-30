@@ -60,8 +60,8 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	dictY = {'西屯區': '1', '中區': '2', '北區': '3','東區': '4', '南區': '5', '西區': '6', '北屯區': '7', '南屯區': '8', '太平區': '9', '大里區': '10', '龍井區': '11', '沙鹿區': '12', '梧棲區': '13','清水區': '14','大甲區': '15'}
-	dictN = {'霧峰區': '1', '烏日區': '2', '豐原區': '3','后里區': '4', '石岡區': '5', '東勢區': '6', '和平區': '7', '新社區': '8', '潭子區': '9', '大雅區': '10', '神岡區': '11', '大雅區': '12', '大肚區': '13','外埔區': '14','大安區': '15' }
+	dictY = {'西屯區': 1, '中區': 1, '北區': 1,'東區': 1, '南區': 1, '西區': 1, '北屯區': 1, '南屯區': 1, '太平區': 1, '大里區': 1, '龍井區': 1, '沙鹿區': 1, '梧棲區': 1,'清水區': 1,'大甲區': 1}
+	dictN = {'霧峰區': 2, '烏日區': 2, '豐原區': 2,'后里區': 2, '石岡區': 2, '東勢區': 2, '和平區': 2, '新社區': 2, '潭子區': 2, '大雅區': 2, '神岡區': 2, '大雅區': 2, '大肚區': 2,'外埔區': 2,'大安區': 2 }
 	if event.message.text == "喝茶":
             confirm_template_message = TemplateSendMessage(
                             alt_text='請問您是否成年？', 
@@ -89,10 +89,10 @@ def handle_message(event):
 	elif event.message.text == "是":
 			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-	elif dictY[event.message.text] :
+	elif dictY[event.message.text]==1:
 			message = TextSendMessage(text='我好帥')
 			line_bot_api.reply_message(event.reply_token, message)
-	elif dictN[event.message.text] :
+	elif dictN[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
 	else :
