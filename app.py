@@ -54,10 +54,13 @@ def callback():
         abort(400)
     return 'OK'
 
+
+
+count = 0
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	count = 0
+
 	dict = {'西屯區': '1', '中區': '2', '北區': '3','東區': '4', '南區': '5', '西區': '6', '北屯區': '7', '南屯區': '8', '太平區': '9', '大里區': '10', }
 	if event.message.text != "" and event.message.text != "喝茶" and count == 0:
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！')
