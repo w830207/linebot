@@ -90,9 +90,8 @@ def handle_message(event):
 	elif event.message.text == "是":
 			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-			count = 0
 	elif dict[event.message.text] :
-			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
+			message = TextSendMessage(text='我好帥')
 			line_bot_api.reply_message(event.reply_token, message)
 			count = 0
 	else:
