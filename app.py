@@ -56,11 +56,12 @@ def callback():
 
 
 
-count = 0
+
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
+	if count != 1:
+			count = 0
 	dict = {'西屯區': '1', '中區': '2', '北區': '3','東區': '4', '南區': '5', '西區': '6', '北屯區': '7', '南屯區': '8', '太平區': '9', '大里區': '10', }
 	if event.message.text != "" and event.message.text != "喝茶" and count == 0:
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！')
@@ -101,7 +102,7 @@ def handle_message(event):
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
 			count = 0
-    
+
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
