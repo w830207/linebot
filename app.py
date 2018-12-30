@@ -92,10 +92,10 @@ def handle_message(event):
 			message = TextSendMessage(text='我好帥')
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==2:
-			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
+			message = TextSendMessage(text='不好意思目前該地區不提供服務\r請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-	else :
-			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！\n目前只有台中地區提供服務')
+	elif event.message.text != "":
+			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！\r目前只有台中地區提供服務')
 			line_bot_api.reply_message(event.reply_token, message)
 
 import os
