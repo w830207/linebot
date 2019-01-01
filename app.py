@@ -103,14 +103,15 @@ def handle_message(event):
 					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
 					gc = gspread.authorize(key)
-					worksheet = gc.open(GSpreadSheet).worksheet("中區")
+					worksheet = gc.open(GSpreadSheet).worksheet("西屯區")
 				except Exception as ex:
 					print('無法連線Google試算表', ex)
 					sys.exit(1)
 				cell_list4 = worksheet.range('A4:E4')
 				if cell_list4 !="":
 					ttt = str(cell_list4)
-					for i in range(8,21):
+					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(4, i).value =="" :
 							ttt += ' '+str(i+4)+'available'
 					message4 = TextSendMessage(text=ttt)
@@ -118,7 +119,8 @@ def handle_message(event):
 				cell_list5 = worksheet.range('A5:E5')
 				if cell_list5 !="":
 					ttt = str(cell_list5)
-					for i in range(8,21):
+					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+4)+'available'
 					message5 = TextSendMessage(text=ttt)
@@ -136,14 +138,15 @@ def handle_message(event):
 					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
 					gc = gspread.authorize(key)
-					worksheet = gc.open(GSpreadSheet).worksheet("中區")
+					worksheet = gc.open(GSpreadSheet).worksheet("北區")
 				except Exception as ex:
 					print('無法連線Google試算表', ex)
 					sys.exit(1)
 				cell_list4 = worksheet.range('A4:E4')
 				if cell_list4 !="":
 					ttt = str(cell_list4)
-					for i in range(8,21):
+					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(4, i).value =="" :
 							ttt += ' '+str(i+4)+'available'
 					message4 = TextSendMessage(text=ttt)
@@ -151,8 +154,8 @@ def handle_message(event):
 				cell_list5 = worksheet.range('A5:E5')
 				if cell_list5 !="":
 					ttt = str(cell_list5)
-					for i in range(8,21):
-					#8-21代表營業時間從1200-2400
+					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+4)+'available'
 					message5 = TextSendMessage(text=ttt)
@@ -177,8 +180,8 @@ def handle_message(event):
 				cell_list4 = worksheet.range('A4:E4')
 				if cell_list4 !="":
 					ttt = str(cell_list4)
-					for i in range(8,21):
-					#8-21代表營業時間從1200-2400
+					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(4, i).value =="" :
 							ttt += ' '+str(i+4)+'available'
 					message4 = TextSendMessage(text=ttt)
@@ -186,8 +189,8 @@ def handle_message(event):
 				cell_list5 = worksheet.range('A5:E5')
 				if cell_list5 !="":
 					ttt = str(cell_list5)
-					for i in range(8,21):
-					#8-21代表營業時間從1200-2400
+					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+4)+'available'
 					message5 = TextSendMessage(text=ttt)
