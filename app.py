@@ -108,24 +108,22 @@ def handle_message(event):
 					print('無法連線Google試算表', ex)
 					sys.exit(1)
 				cell_list4 = worksheet.range('A4:E4')
-				if cell_list4 !="":
-					ttt = str(cell_list4)
+					ttt += str(cell_list4)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
 						if worksheet.cell(4, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					message4 = TextSendMessage(text=ttt)
+					message = TextSendMessage(text=ttt)
 					break
 				cell_list5 = worksheet.range('A5:E5')
-				if cell_list5 !="":
-					ttt = str(cell_list5)
+					ttt += str(cell_list5)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					message5 = TextSendMessage(text=ttt)
+					message = TextSendMessage(text=ttt)
 					break
-			line_bot_api.reply_message(event.reply_token, message4+message5)
+			line_bot_api.reply_message(event.reply_token, message4)
 	elif dictY[event.message.text]==5:
 			#'西屯區': 3, '中區': 4, '北區': 5
 			#GDriveJSON就輸入下載下來Json檔名稱
@@ -143,23 +141,24 @@ def handle_message(event):
 					sys.exit(1)
 				cell_list4 = worksheet.range('A4:E4')
 				if cell_list4 !="":
-					ttt = str(cell_list4)
+					ttt += str(cell_list4)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
 						if worksheet.cell(4, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					message4 = TextSendMessage(text=ttt)
+					message = TextSendMessage(text=ttt)
 					break
 				cell_list5 = worksheet.range('A5:E5')
 				if cell_list5 !="":
-					ttt = str(cell_list5)
+					ttt += str(cell_list5)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					message5 = TextSendMessage(text=ttt)
+					message = TextSendMessage(text=ttt)
 					break
-			line_bot_api.reply_message(event.reply_token, message4+message5)
+			line_bot_api.reply_message(event.reply_token, message4)
+			line_bot_api.reply_message(event.reply_token, message5)
 	elif dictY[event.message.text]==4:
 			#'西屯區': 3, '中區': 4, '北區': 5
 			#GDriveJSON就輸入下載下來Json檔名稱
@@ -177,24 +176,25 @@ def handle_message(event):
 					sys.exit(1)
 				cell_list4 = worksheet.range('A4:E4')
 				if cell_list4 !="":
-					ttt = str(cell_list4)
+					ttt += str(cell_list4)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
 						if worksheet.cell(4, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					message4 = TextSendMessage(text=ttt)
+					message = TextSendMessage(text=ttt)
 					break
 				cell_list5 = worksheet.range('A5:E5')
 				if cell_list5 !="":
-					ttt = str(cell_list5)
+					ttt += str(cell_list5)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					message5 = TextSendMessage(text=ttt)
+					message = TextSendMessage(text=ttt)
 					breaktSendMessage(text=ttt)
 					break
-			line_bot_api.reply_message(event.reply_token, message4+message5)
+			line_bot_api.reply_message(event.reply_token, message4)
+			line_bot_api.reply_message(event.reply_token, message5)
 	elif dictY[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
