@@ -90,22 +90,17 @@ def handle_message(event):
 			dict = {'西屯區': 3, '中區': 4, '北區': 5}
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
-			while True:
-				try:
-					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
-					gc = gspread.authorize(key)
-					worksheet = gc.open(GSpreadSheet).worksheet("西屯區")
-				except Exception as ex:
-					print('無法連線Google試算表', ex)
-					sys.exit(1)
-				if sht in dict and worksheet.acell(dictW[event.message.text]).value =="":
-					worksheet.update_cell(dictW[event.message.text], 'Bingo!')
-					message = TextSendMessage(text='預約成功')
-					line_bot_api.reply_message(event.reply_token, message)
-				elif worksheet.acell(dictW[event.message.text]).value !="":
-					line_bot_api.reply_message(event.reply_token, TextSendMessage(text='預約失敗 請重新預約'))
-				break
+			scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
+			gc = gspread.authorize(key)
+			worksheet = gc.open(GSpreadSheet).worksheet("西屯區")
+			if sht in dict and worksheet.acell(dictW[event.message.text]).value =="":
+				worksheet.update_cell(dictW[event.message.text], 'Bingo!')
+				message = TextSendMessage(text='預約成功')
+				line_bot_api.reply_message(event.reply_token, message)
+			elif worksheet.acell(dictW[event.message.text]).value !="":
+				line_bot_api.reply_message(event.reply_token, TextSendMessage(text='預約失敗 請重新預約'))
+				
 	elif event.message.text  in dictM:
 			book("中區",dictM[event.message.text])
 	elif event.message.text  in dictN:
