@@ -78,7 +78,7 @@ def book(sht,loc):
 			return("預約失敗請重新選擇地區或是小姐的服務時間")
 		break
 
-@book
+
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
