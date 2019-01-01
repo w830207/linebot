@@ -128,7 +128,7 @@ def handle_message(event):
                                     ]
                                 )
                                 )
-									line_bot_api.reply_message(event.reply_token,Image_Carousel)
+									line_bot_api.reply_message(event.push_token,Image_Carousel)
 					message4 = TextSendMessage(text=ttt)
 					break
 				cell_list5 = worksheet.range('A5:E5')
