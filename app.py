@@ -113,7 +113,22 @@ def handle_message(event):
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
 						if worksheet.cell(4, i).value =="" :
-							ttt += ' '+str(i+7)+'available'
+									Image_Carousel = TemplateSendMessage(
+                                    alt_text='目錄 template',
+                                    template=ImageCarouselTemplate(
+                                    columns=[
+                                        ImageCarouselColumn(
+                                            image_url=str(worksheet.acell('D4').value),
+                                            action=PostbackTemplateAction(
+                                                label='預約'+str(i+7)+'點',
+                                                text='預約爽起來',
+                                                data='worksheet.update_cell(4, i+7, "Bingo!")'
+                                            )
+                                        )
+                                    ]
+                                )
+                                )
+									line_bot_api.reply_message(event.reply_token,Image_Carousel)
 					message4 = TextSendMessage(text=ttt)
 					break
 				cell_list5 = worksheet.range('A5:E5')
