@@ -61,7 +61,7 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	dictY = {'西屯區': 1, '中區': 1, '北區': 1,'東區': 2, '南區': 2, '西區': 2, '北屯區': 2, '南屯區': 2, '太平區': 2, '大里區': 2, '龍井區': 2, '沙鹿區': 2, '梧棲區': 2,'清水區': 2,'大甲區': 2,'霧峰區': 2, '烏日區': 2, '豐原區': 2,'后里區': 2, '石岡區': 2, '東勢區': 2, '和平區': 2, '新社區': 2, '潭子區': 2, '大雅區': 2, '神岡區': 2, '大雅區': 2, '大肚區': 2,'外埔區': 2,'大安區': 2}
+	dictY = {'西屯區': 3, '中區': 4, '北區': 5,'東區': 2, '南區': 2, '西區': 2, '北屯區': 2, '南屯區': 2, '太平區': 2, '大里區': 2, '龍井區': 2, '沙鹿區': 2, '梧棲區': 2,'清水區': 2,'大甲區': 2,'霧峰區': 2, '烏日區': 2, '豐原區': 2,'后里區': 2, '石岡區': 2, '東勢區': 2, '和平區': 2, '新社區': 2, '潭子區': 2, '大雅區': 2, '神岡區': 2, '大雅區': 2, '大肚區': 2,'外埔區': 2,'大安區': 2}
 	if event.message.text not in dictY and event.message.text != "是" and event.message.text != "喝茶":
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！\n目前只有台中地區提供服務')
 			line_bot_api.reply_message(event.reply_token, message)
@@ -92,8 +92,8 @@ def handle_message(event):
 	elif event.message.text == "是":
 			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-	elif dictY[event.message.text]==1:
-			if event.message.text == "西屯區":
+	elif dictY[event.message.text]==3:
+				message = TextSendMessage(text='無法連線Google試算表')
 				#GDriveJSON就輸入下載下來Json檔名稱
 				#GSpreadSheet是google試算表名稱
 				GDriveJSON = 'teafish-75f3bc4ebb90.json'
@@ -111,42 +111,46 @@ def handle_message(event):
 					if cell_list !="":
 						message = TextSendMessage(text=cell_list)
 						break
-			elif event.message.text == "中區":
-				#GDriveJSON就輸入下載下來Json檔名稱
-				#GSpreadSheet是google試算表名稱
-				GDriveJSON = 'teafish-75f3bc4ebb90.json'
-				GSpreadSheet = 'teafish'
-				while True:
-					try:
-						scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-						key = SAC.from_json_keyfile_name(GDriveJSON, scope)
-						gc = gspread.authorize(key)
-						worksheet = gc.open(GSpreadSheet).worksheet("中區")
-					except Exception as ex:
-						print('無法連線Google試算表', ex)
-						sys.exit(1)
-					cell_list = worksheet.range('A4:E4')
-					if cell_list !="":
-						message = TextSendMessage(text=cell_list)
-						break
-			elif event.message.text == "北區":
-				#GDriveJSON就輸入下載下來Json檔名稱
-				#GSpreadSheet是google試算表名稱
-				GDriveJSON = 'teafish-75f3bc4ebb90.json'
-				GSpreadSheet = 'teafish'
-				while True:
-					try:
-						scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-						key = SAC.from_json_keyfile_name(GDriveJSON, scope)
-						gc = gspread.authorize(key)
-						worksheet = gc.open(GSpreadSheet).worksheet("北區")
-					except Exception as ex:
-						print('無法連線Google試算表', ex)
-						sys.exit(1)
-					cell_list = worksheet.range('A4:E4')
-					if cell_list !="":
-						message = TextSendMessage(text=cell_list)
-						break
+				line_bot_api.reply_message(event.reply_token, message)
+	elif dictY[event.message.text]==5:
+			message = TextSendMessage(text='無法連線Google試算表')
+			#GDriveJSON就輸入下載下來Json檔名稱
+			#GSpreadSheet是google試算表名稱
+			GDriveJSON = 'teafish-75f3bc4ebb90.json'
+			GSpreadSheet = 'teafish'
+			while True:
+				try:
+					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
+					gc = gspread.authorize(key)
+					worksheet = gc.open(GSpreadSheet).worksheet("北區")
+				except Exception as ex:
+					print('無法連線Google試算表', ex)
+					sys.exit(1)
+				cell_list = worksheet.range('A4:E4')
+				if cell_list !="":
+					message = TextSendMessage(text=cell_list)
+					break
+			line_bot_api.reply_message(event.reply_token, message)
+	elif dictY[event.message.text]==4:
+			message = TextSendMessage(text='無法連線Google試算表')
+			#GDriveJSON就輸入下載下來Json檔名稱
+			#GSpreadSheet是google試算表名稱
+			GDriveJSON = 'teafish-75f3bc4ebb90.json'
+			GSpreadSheet = 'teafish'
+			while True:
+				try:
+					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
+					gc = gspread.authorize(key)
+					worksheet = gc.open(GSpreadSheet).worksheet("中區")
+				except Exception as ex:
+					print('無法連線Google試算表', ex)
+					sys.exit(1)
+				cell_list = worksheet.range('A4:E4')
+				if cell_list !="":
+					message = TextSendMessage(text=cell_list)
+					break
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
