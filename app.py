@@ -109,7 +109,8 @@ def handle_message(event):
 						sys.exit(1)
 					cell_list = worksheet.range('A4:E4')
 					if cell_list !="":
-						message = TextSendMessage(text=cell_list)
+						ttt = str(cell_list)
+						message = TextSendMessage(text=ttt)
 						break
 				line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==5:
@@ -129,7 +130,8 @@ def handle_message(event):
 					sys.exit(1)
 				cell_list = worksheet.range('A4:E4')
 				if cell_list !="":
-					message = TextSendMessage(text=cell_list)
+					ttt = str(cell_list)
+					message = TextSendMessage(text=ttt)
 					break
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==4:
@@ -149,7 +151,8 @@ def handle_message(event):
 					sys.exit(1)
 				cell_list = worksheet.range('A4:E4')
 				if cell_list !="":
-					message = TextSendMessage(text=cell_list)
+					ttt = str(cell_list)
+					message = TextSendMessage(text=ttt)
 					break
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==2:
