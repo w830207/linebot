@@ -79,6 +79,7 @@ def book(sht,loc):
 
 
 # 處理訊息
+@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 	dictY = {'西屯區': 3, '中區': 4, '北區': 5,'東區': 2, '南區': 2, '西區': 2, '北屯區': 2, '南屯區': 2, '太平區': 2, '大里區': 2, '龍井區': 2, '沙鹿區': 2, '梧棲區': 2,'清水區': 2,'大甲區': 2,'霧峰區': 2, '烏日區': 2, '豐原區': 2,'后里區': 2, '石岡區': 2, '東勢區': 2, '和平區': 2, '新社區': 2, '潭子區': 2, '大雅區': 2, '神岡區': 2, '大雅區': 2, '大肚區': 2,'外埔區': 2,'大安區': 2}
 	dictW = {'appleW15': 'H4','appleW16': 'I4','appleW17': 'J4','appleW18': 'K4','appleW19': 'L4','appleW20': 'M4','appleW21': 'N4','appleW22': 'O4','appleW23': 'P4','appleW24': 'R4','bananaW15': 'H5','bananaW16': 'I5','bananaW17': 'J5','bananaW18': 'K5','bananaW19': 'L5','bananaW20': 'M5','bananaW21': 'N5','bananaW22': 'O5','bananaW32': 'P5','bananaW24': 'R5'}
@@ -131,21 +132,14 @@ def handle_message(event):
 			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
-			cell_list4 = worksheet.range('A4:E4')
-			if cell_list4 !="":
-				ttt = str(cell_list4)
-				for i in range(8,18):
-				#8-18代表營業時間從1500-2400
-					if worksheet.cell(4, i).value =="" :
-						ttt += ' '+str(i+7)+'available'
-				cell_list5 = worksheet.range('A5:E5')
-				if cell_list5 !="":
-					ttt += str(cell_list5)
+			for j in range(4,11):
+				if worksheet.cell(j, 1).value !="" :
+					for i in 7:
+						ttt += str(worksheet.cell(j, i).value)+"\n"
 					for i in range(8,18):
-					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			ttt += '\n預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==4:
@@ -159,21 +153,14 @@ def handle_message(event):
 			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
-			cell_list4 = worksheet.range('A4:E4')
-			if cell_list4 !="":
-				ttt = str(cell_list4)
-				for i in range(8,18):
-				#8-18代表營業時間從1500-2400
-					if worksheet.cell(4, i).value =="" :
-						ttt += ' '+str(i+7)+'available'
-				cell_list5 = worksheet.range('A5:E5')
-				if cell_list5 !="":
-					ttt += str(cell_list5)
+			for j in range(4,11):
+				if worksheet.cell(j, 1).value !="" :
+					for i in 7:
+						ttt += str(worksheet.cell(j, i).value)+"\n"
 					for i in range(8,18):
-					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			ttt += '\n預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==5:
@@ -187,27 +174,19 @@ def handle_message(event):
 			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
-			cell_list4 = worksheet.range('A4:E4')
-			if cell_list4 !="":
-				ttt = str(cell_list4)
-				for i in range(8,18):
-				#8-18代表營業時間從1500-2400
-					if worksheet.cell(4, i).value =="" :
-						ttt += ' '+str(i+7)+'available'
-				cell_list5 = worksheet.range('A5:E5')
-				if cell_list5 !="":
-					ttt += str(cell_list5)
+			for j in range(4,11):
+				if worksheet.cell(j, 1).value !="" :
+					for i in 7:
+						ttt += str(worksheet.cell(j, i).value)+"\n"
 					for i in range(8,18):
-					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			ttt += '\n預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
