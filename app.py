@@ -72,7 +72,7 @@ def book(sht,loc):
 			print('無法連線Google試算表', ex)
 			sys.exit(1)
 		if sht in dict and worksheet.acell(loc).value =="":
-			worksheet.update_cell(loc, 'Bingo!')
+			worksheet.update_acell(loc, 'Bingo!')
 			return("預約成功")
 		elif worksheet.acell(loc).value !="":
 			return("預約失敗請重新選擇地區或是小姐的服務時間")
@@ -90,17 +90,22 @@ def handle_message(event):
 			dict = {'西屯區': 3, '中區': 4, '北區': 5}
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
-			scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
-			gc = gspread.authorize(key)
-			worksheet = gc.open(GSpreadSheet).worksheet("西屯區")
-			if sht in dict and worksheet.acell(dictW[event.message.text]).value =="":
-				worksheet.update_cell(dictW[event.message.text], 'Bingo!')
-				message = TextSendMessage(text='預約成功')
-				line_bot_api.reply_message(event.reply_token, message)
-			elif worksheet.acell(dictW[event.message.text]).value !="":
-				line_bot_api.reply_message(event.reply_token, TextSendMessage(text='預約失敗 請重新預約'))
-				
+			while True:
+				try:
+					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
+					gc = gspread.authorize(key)
+					worksheet = gc.open(GSpreadSheet).worksheet("西屯區")
+				except Exception as ex:
+					print('無法連線Google試算表', ex)
+					sys.exit(1)
+				if sht in dict and worksheet.acell(dictW[event.message.text]).value =="":
+					worksheet.update_acell(dictW[event.message.text], 'Bingo!')
+					message = TextSendMessage(text='預約成功')
+					line_bot_api.reply_message(event.reply_token, message)
+				elif worksheet.acell(dictW[event.message.text]).value !="":
+					line_bot_api.reply_message(event.reply_token, TextSendMessage(text='預約失敗 請重新預約'))
+				break
 	elif event.message.text  in dictM:
 			book("中區",dictM[event.message.text])
 	elif event.message.text  in dictN:
@@ -142,32 +147,26 @@ def handle_message(event):
 			#GSpreadSheet是google試算表名稱
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
-			while True:
-				try:
-					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
-					gc = gspread.authorize(key)
-					worksheet = gc.open(GSpreadSheet).worksheet(sht)
-				except Exception as ex:
-					print('無法連線Google試算表', ex)
-					sys.exit(1)
-				cell_list4 = worksheet.range('A4:E4')
-				if cell_list4 !="":
-					ttt = str(cell_list4)
+			scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
+			gc = gspread.authorize(key)
+			worksheet = gc.open(GSpreadSheet).worksheet(sht)
+			cell_list4 = worksheet.range('A4:E4')
+			if cell_list4 !="":
+				ttt = str(cell_list4)
+				for i in range(8,18):
+				#8-18代表營業時間從1500-2400
+					if worksheet.cell(4, i).value =="" :
+						ttt += ' '+str(i+7)+'available'
+				cell_list5 = worksheet.range('A5:E5')
+				if cell_list5 !="":
+					ttt += str(cell_list5)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
-						if worksheet.cell(4, i).value =="" :
+						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					cell_list5 = worksheet.range('A5:E5')
-					if cell_list5 !="":
-						ttt += str(cell_list5)
-						for i in range(8,18):
-						#8-18代表營業時間從1500-2400
-							if worksheet.cell(5, i).value =="" :
-								ttt += ' '+str(i+7)+'available'
-						message = TextSendMessage(text=ttt)
-					break
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==4:
 			sht = "中區"
@@ -176,71 +175,58 @@ def handle_message(event):
 			#GSpreadSheet是google試算表名稱
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
-			while True:
-				try:
-					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
-					gc = gspread.authorize(key)
-					worksheet = gc.open(GSpreadSheet).worksheet(sht)
-				except Exception as ex:
-					print('無法連線Google試算表', ex)
-					sys.exit(1)
-				cell_list4 = worksheet.range('A4:E4')
-				if cell_list4 !="":
-					ttt = str(cell_list4)
+			scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
+			gc = gspread.authorize(key)
+			worksheet = gc.open(GSpreadSheet).worksheet(sht)
+			cell_list4 = worksheet.range('A4:E4')
+			if cell_list4 !="":
+				ttt = str(cell_list4)
+				for i in range(8,18):
+				#8-18代表營業時間從1500-2400
+					if worksheet.cell(4, i).value =="" :
+						ttt += ' '+str(i+7)+'available'
+				cell_list5 = worksheet.range('A5:E5')
+				if cell_list5 !="":
+					ttt += str(cell_list5)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
-						if worksheet.cell(4, i).value =="" :
+						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					cell_list5 = worksheet.range('A5:E5')
-					if cell_list5 !="":
-						ttt += str(cell_list5)
-						for i in range(8,18):
-						#8-18代表營業時間從1500-2400
-							if worksheet.cell(5, i).value =="" :
-								ttt += ' '+str(i+7)+'available'
-						message = TextSendMessage(text=ttt)
-					break
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==5:
-			sht ="北區"
+			sht = "北區"
 			#'西屯區': 3, '中區': 4, '北區': 5
 			#GDriveJSON就輸入下載下來Json檔名稱
 			#GSpreadSheet是google試算表名稱
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
-			while True:
-				try:
-					scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-					key = SAC.from_json_keyfile_name(GDriveJSON, scope)
-					gc = gspread.authorize(key)
-					worksheet = gc.open(GSpreadSheet).worksheet(sht)
-				except Exception as ex:
-					print('無法連線Google試算表', ex)
-					sys.exit(1)
-				cell_list4 = worksheet.range('A4:E4')
-				if cell_list4 !="":
-					ttt = str(cell_list4)
+			scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
+			gc = gspread.authorize(key)
+			worksheet = gc.open(GSpreadSheet).worksheet(sht)
+			cell_list4 = worksheet.range('A4:E4')
+			if cell_list4 !="":
+				ttt = str(cell_list4)
+				for i in range(8,18):
+				#8-18代表營業時間從1500-2400
+					if worksheet.cell(4, i).value =="" :
+						ttt += ' '+str(i+7)+'available'
+				cell_list5 = worksheet.range('A5:E5')
+				if cell_list5 !="":
+					ttt += str(cell_list5)
 					for i in range(8,18):
 					#8-18代表營業時間從1500-2400
-						if worksheet.cell(4, i).value =="" :
+						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-					cell_list5 = worksheet.range('A5:E5')
-					if cell_list5 !="":
-						ttt += str(cell_list5)
-						for i in range(8,18):
-						#8-18代表營業時間從1500-2400
-							if worksheet.cell(5, i).value =="" :
-								ttt += ' '+str(i+7)+'available'
-						message = TextSendMessage(text=ttt)
-					break
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-
 
 import os
 if __name__ == "__main__":
