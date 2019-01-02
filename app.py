@@ -88,16 +88,10 @@ def handle_message(event):
 	dictN = {'appleN15': 'H4','appleN16': 'I4','appleN17': 'J4','appleN18': 'K4','appleN19': 'L4','appleN20': 'M4','appleN21': 'N4','appleN22': 'O4','appleN32': 'P4','appleN24': 'R4','bananaN15': 'H5','bananaN16': 'I5','bananaN17': 'J5','bananaN18': 'K5','bananaN19': 'L5','bananaN20': 'M5','bananaN21': 'N5','bananaN22': 'O5','bananaN32': 'P5','bananaN24': 'R5'}
 	if event.message.text  in dictW:
 			book("西屯區",dictM[event.message.text])
-			message = TextSendMessage(text='預約成功')
-			line_bot_api.reply_message(event.reply_token, message)
 	elif event.message.text  in dictM:
 			book("中區",dictM[event.message.text])
-			message = TextSendMessage(text='預約成功')
-			line_bot_api.reply_message(event.reply_token, message)
 	elif event.message.text  in dictN:
 			book("北區",dictM[event.message.text])
-			message = TextSendMessage(text='預約成功')
-			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text not in dictY and event.message.text != "是" and event.message.text != "喝茶":
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！\n目前只有台中地區提供服務')
 			line_bot_api.reply_message(event.reply_token, message)
