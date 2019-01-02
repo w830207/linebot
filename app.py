@@ -133,9 +133,11 @@ def handle_message(event):
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
 			for j in range(4,11):
-				if worksheet.cell(j, 1).value !="" :
+				name = worksheet.cell(j, 1).value
+				if name !="" :
 					for i in 7:
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+						val = worksheet.cell(j, i).value
+						ttt += str(val)+" \n"
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
@@ -154,9 +156,11 @@ def handle_message(event):
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
 			for j in range(4,11):
-				if worksheet.cell(j, 1).value !="" :
+				name = worksheet.cell(j, 1).value
+				if name !="" :
 					for i in 7:
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+						val = worksheet.cell(j, i).value
+						ttt += str(val)+" \n"
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
@@ -175,9 +179,11 @@ def handle_message(event):
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
 			for j in range(4,11):
-				if worksheet.cell(j, 1).value !="" :
+				name = worksheet.cell(j, 1).value
+				if name !="" :
 					for i in 7:
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+						val = worksheet.cell(j, i).value
+						ttt += str(val)+" \n"
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
@@ -187,6 +193,7 @@ def handle_message(event):
 	elif dictY[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
+
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
