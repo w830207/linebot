@@ -55,7 +55,7 @@ def callback():
         abort(400)
     return 'OK'
 
-#sht是檔案里工作表的名稱,loc是想要update的格子坐標
+
 def book(sht,loc):
 	#GDriveJSON就輸入下載下來Json檔名稱
 	#GSpreadSheet是google試算表名稱
@@ -131,14 +131,21 @@ def handle_message(event):
 			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
-			for j in range(4,11):
-				if worksheet.cell(j, 1).value !="" :
-					for i in 7:
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+			cell_list4 = worksheet.range('A4:E4')
+			if cell_list4 !="":
+				ttt = str(cell_list4)
+				for i in range(8,18):
+				#8-18代表營業時間從1500-2400
+					if worksheet.cell(4, i).value =="" :
+						ttt += ' '+str(i+7)+'available'
+				cell_list5 = worksheet.range('A5:E5')
+				if cell_list5 !="":
+					ttt += str(cell_list5)
 					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-			ttt += '\n預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==4:
@@ -152,14 +159,21 @@ def handle_message(event):
 			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
-			for j in range(4,11):
-				if worksheet.cell(j, 1).value !="" :
-					for i in 7:
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+			cell_list4 = worksheet.range('A4:E4')
+			if cell_list4 !="":
+				ttt = str(cell_list4)
+				for i in range(8,18):
+				#8-18代表營業時間從1500-2400
+					if worksheet.cell(4, i).value =="" :
+						ttt += ' '+str(i+7)+'available'
+				cell_list5 = worksheet.range('A5:E5')
+				if cell_list5 !="":
+					ttt += str(cell_list5)
 					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-			ttt += '\n預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==5:
@@ -173,14 +187,21 @@ def handle_message(event):
 			key = SAC.from_json_keyfile_name(GDriveJSON, scope)
 			gc = gspread.authorize(key)
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
-			for j in range(4,11):
-				if worksheet.cell(j, 1).value !="" :
-					for i in 7:
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+			cell_list4 = worksheet.range('A4:E4')
+			if cell_list4 !="":
+				ttt = str(cell_list4)
+				for i in range(8,18):
+				#8-18代表營業時間從1500-2400
+					if worksheet.cell(4, i).value =="" :
+						ttt += ' '+str(i+7)+'available'
+				cell_list5 = worksheet.range('A5:E5')
+				if cell_list5 !="":
+					ttt += str(cell_list5)
 					for i in range(8,18):
+					#8-18代表營業時間從1500-2400
 						if worksheet.cell(5, i).value =="" :
 							ttt += ' '+str(i+7)+'available'
-			ttt += '\n預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
 	elif dictY[event.message.text]==2:
