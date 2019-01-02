@@ -87,11 +87,17 @@ def handle_message(event):
 	dictM = {'appleM15': 'H4','appleM16': 'I4','appleM17': 'J4','appleM18': 'K4','appleM19': 'L4','appleM20': 'M4','appleM21': 'N4','appleM22': 'O4','appleM32': 'P4','appleM24': 'R4','bananaM15': 'H5','bananaM16': 'I5','bananaM17': 'J5','bananaM18': 'K5','bananaM19': 'L5','bananaM20': 'M5','bananaM21': 'N5','bananaM22': 'O5','bananaM32': 'P5','bananaM24': 'R5'}
 	dictN = {'appleN15': 'H4','appleN16': 'I4','appleN17': 'J4','appleN18': 'K4','appleN19': 'L4','appleN20': 'M4','appleN21': 'N4','appleN22': 'O4','appleN32': 'P4','appleN24': 'R4','bananaN15': 'H5','bananaN16': 'I5','bananaN17': 'J5','bananaN18': 'K5','bananaN19': 'L5','bananaN20': 'M5','bananaN21': 'N5','bananaN22': 'O5','bananaN32': 'P5','bananaN24': 'R5'}
 	if event.message.text  in dictW:
-			book("西屯區",dictM[event.message.text])
+			book("西屯區",dictW[event.message.text])
+			message = TextSendMessage(text='預約成功')
+			line_bot_api.reply_message(event.reply_token, message)
 	elif event.message.text  in dictM:
 			book("中區",dictM[event.message.text])
+			message = TextSendMessage(text='預約成功')
+			line_bot_api.reply_message(event.reply_token, message)
 	elif event.message.text  in dictN:
-			book("北區",dictM[event.message.text])
+			book("北區",dictN[event.message.text])
+			message = TextSendMessage(text='預約成功')
+			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text not in dictY and event.message.text != "是" and event.message.text != "喝茶":
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！\n目前只有台中地區提供服務')
 			line_bot_api.reply_message(event.reply_token, message)
