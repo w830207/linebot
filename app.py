@@ -124,9 +124,7 @@ def handle_message(event):
 	if event.message.text == "我已成年":
 			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-	compare_txt = ["西屯區", "西屯"]
-	for x in compare_txt:
-		if event.message.text.find(x) != -1:
+	if event.message.text == "西屯區":
 			sht = "西屯區"
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
@@ -146,7 +144,7 @@ def handle_message(event):
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
-	if event.message.text.find(x) != -1:
+	if event.message.text == "中區":
 			sht = "中區"
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
@@ -166,7 +164,7 @@ def handle_message(event):
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
-	if event.message.text.find(x) != -1:
+	if event.message.text == "北區":
 			sht = "北區"
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
