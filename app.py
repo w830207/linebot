@@ -135,13 +135,14 @@ def handle_message(event):
 			ttt = ""
 			for j in range(4,11):
 				if worksheet.cell(j, 1).value !="" :
+					pic = str(worksheet.cell(j, 6).value)
 					for i in range(1,5):
 						ttt += "\n"+str(worksheet.cell(j, i).value)
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
-			message = (TextSendMessage(text=ttt))
+			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text == "中區":
 			sht = "中區"
@@ -153,6 +154,7 @@ def handle_message(event):
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
 			ttt = ""
 			for j in range(4,11):
+				pic = str(worksheet.cell(j, 6).value)
 				if worksheet.cell(j, 1).value !="" :
 					for i in range(1,5):
 						ttt += "\n"+str(worksheet.cell(j, i).value)
@@ -160,7 +162,7 @@ def handle_message(event):
 						if worksheet.cell(5, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
-			message = (TextSendMessage(text=ttt))
+			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text == "北區":
 			sht = "北區"
@@ -173,13 +175,14 @@ def handle_message(event):
 			ttt = ""
 			for j in range(4,11):
 				if worksheet.cell(j, 1).value !="" :
+					pic = str(worksheet.cell(j, 6).value)
 					for i in range(1,5):
 						ttt += "\n"+str(worksheet.cell(j, i).value)+"\n"
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
 			ttt += "\n預約請回覆小姐名稱加時間 例如 吉澤明步16"
-			message = (TextSendMessage(text=ttt))
+			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
 	if dictY[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
