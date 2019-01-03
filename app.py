@@ -59,6 +59,7 @@ def callback():
 def book(sht,loc):
 	#GDriveJSON就輸入下載下來Json檔名稱
 	#GSpreadSheet是google試算表名稱
+	dict = {'西屯區': 1, '中區': 1, '北區': 1}
 	GDriveJSON = 'teafish-75f3bc4ebb90.json'
 	GSpreadSheet = 'teafish'
 	while True:
@@ -97,7 +98,7 @@ def handle_message(event):
 			book("北區",dictN[event.message.text])
 			message = TextSendMessage(text='預約成功')
 			line_bot_api.reply_message(event.reply_token, message)
-	if event.message.text not in dictY and event.message.text != "是" and event.message.text != "喝茶":
+	if event.message.text not in dictY and event.message.text != "我已成年" and event.message.text != "喝茶":
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！\n目前只有台中地區提供服務')
 			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text == "喝茶":
@@ -136,8 +137,8 @@ def handle_message(event):
 			ttt = ""
 			for j in range(4,11):
 				if worksheet.cell(j, 1).value !="" :
-					for i in range(1,7):
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+					for i in range(1,6):
+						ttt += "\n"+str(worksheet.cell(j, i).value)
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
@@ -155,8 +156,8 @@ def handle_message(event):
 			ttt = ""
 			for j in range(4,11):
 				if worksheet.cell(j, 1).value !="" :
-					for i in range(1,7):
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+					for i in range(1,6):
+						ttt += "\n"+str(worksheet.cell(j, i).value)
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
@@ -174,8 +175,8 @@ def handle_message(event):
 			ttt = ""
 			for j in range(4,11):
 				if worksheet.cell(j, 1).value !="" :
-					for i in range(1,7):
-						ttt += str(worksheet.cell(j, i).value)+"\n"
+					for i in range(1,6):
+						ttt += "\n"+str(worksheet.cell(j, i).value)+"\n"
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
@@ -185,7 +186,6 @@ def handle_message(event):
 	if dictY[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
-
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
