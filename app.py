@@ -135,8 +135,8 @@ def handle_message(event):
 			ttt = ""
 			for j in range(4,11):
 				if worksheet.cell(j, 1).value !="" :
-					pic = str(worksheet.cell(j, 6).value)
-					for i in range(1,5):
+					pic = str(worksheet.cell(j, 5).value)
+					for i in range(1,4):
 						ttt += "\n"+str(worksheet.cell(j, i).value)
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
@@ -154,9 +154,9 @@ def handle_message(event):
 			worksheet = gc.open(GSpreadSheet).worksheet(sht)
 			ttt = ""
 			for j in range(4,11):
-				pic = str(worksheet.cell(j, 6).value)
+				pic = str(worksheet.cell(j, 5).value)
 				if worksheet.cell(j, 1).value !="" :
-					for i in range(1,5):
+					for i in range(1,4):
 						ttt += "\n"+str(worksheet.cell(j, i).value)
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
@@ -175,8 +175,8 @@ def handle_message(event):
 			ttt = ""
 			for j in range(4,11):
 				if worksheet.cell(j, 1).value !="" :
-					pic = str(worksheet.cell(j, 6).value)
-					for i in range(1,5):
+					pic = str(worksheet.cell(j, 5).value)
+					for i in range(1,4):
 						ttt += "\n"+str(worksheet.cell(j, i).value)+"\n"
 					for i in range(8,18):
 						if worksheet.cell(5, i).value =="" :
