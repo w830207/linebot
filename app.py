@@ -141,7 +141,7 @@ def handle_message(event):
 					for i in range(8,18):
 						if worksheet.cell(j, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
-				ttt += "\n"
+					ttt += "\n"
 			ttt += "\n預約請回覆小姐名稱加時間 例如 吉澤明步16"
 			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
@@ -162,7 +162,7 @@ def handle_message(event):
 					for i in range(8,18):
 						if worksheet.cell(j, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
-				ttt += "\n"
+					ttt += "\n"
 			ttt += "\n預約請回覆小姐名稱加時間 例如 吉澤明步16"
 			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
@@ -183,7 +183,7 @@ def handle_message(event):
 					for i in range(8,18):
 						if worksheet.cell(j, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
-				ttt += "\n"
+					ttt += "\n"
 			ttt += "\n預約請回覆小姐名稱加時間 例如 吉澤明步16"
 			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
