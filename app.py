@@ -88,14 +88,18 @@ def handle_message(event):
 	if event.message.text  in dictW:
 			book("西屯區",dictW[event.message.text])
 			message = TextSendMessage(text='預約成功')
+			line_bot_api.reply_message(event.reply_token, message)
 	elif event.message.text  in dictM:
 			book("中區",dictM[event.message.text])
 			message = TextSendMessage(text='預約成功')
+			line_bot_api.reply_message(event.reply_token, message)
 	elif event.message.text  in dictN:
 			book("北區",dictN[event.message.text])
 			message = TextSendMessage(text='預約成功')
+			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text not in dictY and event.message.text != "是" and event.message.text != "喝茶":
 			message = TextSendMessage(text='嗨帥哥你好！輸入"喝茶"提供服務哦！\n目前只有台中地區提供服務')
+			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text == "喝茶":
             message = TemplateSendMessage(
                             alt_text='請問您是否成年？', 
@@ -117,6 +121,7 @@ def handle_message(event):
 		)
 	if event.message.text == "我已成年":
 			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
+			line_bot_api.reply_message(event.reply_token, message)
 	compare_txt = ["西屯區", "西屯"]
 	for x in compare_txt:
 		if event.message.text.find(x) != -1:
@@ -137,6 +142,7 @@ def handle_message(event):
 							ttt += "\n"+str(i+7)+'available'
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
+			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text.find(x) != -1:
 			sht = "中區"
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
@@ -155,6 +161,7 @@ def handle_message(event):
 							ttt += "\n"+str(i+7)+'available'
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
+			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text.find(x) != -1:
 			sht = "北區"
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
@@ -173,9 +180,10 @@ def handle_message(event):
 							ttt += "\n"+str(i+7)+'available'
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
+			line_bot_api.reply_message(event.reply_token, message)
 	if dictY[event.message.text]==2:
 			message = TextSendMessage(text='不好意思目前該地區不提供服務\n請輸入服務地區 服務地區:北區 西屯區 中區')
-	line_bot_api.reply_message(event.reply_token, message)
+			line_bot_api.reply_message(event.reply_token, message)
 
 import os
 if __name__ == "__main__":
