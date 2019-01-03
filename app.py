@@ -119,7 +119,7 @@ def handle_message(event):
                             ]
 			)
 		)
-			line_bot_api.reply_message(event.reply_token, message)
+            line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text == "我已成年":
 			message = TextSendMessage(text='請輸入服務地區 服務地區:北區 西屯區 中區')
 			line_bot_api.reply_message(event.reply_token, message)
