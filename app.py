@@ -141,7 +141,7 @@ def handle_message(event):
 					for i in range(8,18):
 						if worksheet.cell(j, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
-			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			ttt += "\n預約請回覆小姐名稱加時間 例如 吉澤明步16"
 			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text == "中區":
@@ -161,7 +161,7 @@ def handle_message(event):
 					for i in range(8,18):
 						if worksheet.cell(j, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
-			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
+			ttt += "\n預約請回覆小姐名稱加時間 例如 吉澤明步16"
 			message = (ImageSendMessage(original_content_url=pic,preview_image_url=pic),TextSendMessage(text=ttt))
 			line_bot_api.reply_message(event.reply_token, message)
 	if event.message.text == "北區":
@@ -177,7 +177,7 @@ def handle_message(event):
 				if worksheet.cell(j, 1).value !="" :
 					pic = str(worksheet.cell(j, 5).value)
 					for i in range(1,4):
-						ttt += "\n"+str(worksheet.cell(j, i).value)+"\n"
+						ttt += "\n"+str(worksheet.cell(j, i).value)
 					for i in range(8,18):
 						if worksheet.cell(j, i).value =="" :
 							ttt += "\n"+str(i+7)+'available'
