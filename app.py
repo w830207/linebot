@@ -143,7 +143,7 @@ def handle_message(event):
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
-	if event.message.text.find(x) != -1:
+	if event.message.text == "中區":
 			sht = "中區"
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
@@ -162,7 +162,7 @@ def handle_message(event):
 			ttt += '預約請回覆小姐名稱加時間 例如 吉澤明步16'
 			message = TextSendMessage(text=ttt)
 			line_bot_api.reply_message(event.reply_token, message)
-	if event.message.text.find(x) != -1:
+	if event.message.text == "北區":
 			sht = "北區"
 			GDriveJSON = 'teafish-75f3bc4ebb90.json'
 			GSpreadSheet = 'teafish'
